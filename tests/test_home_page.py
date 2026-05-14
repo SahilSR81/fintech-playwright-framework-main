@@ -1,14 +1,42 @@
-import pytest
+import re
+from playwright.sync_api import expect
 from pages.home_page import HomePage
 
 
-@pytest.mark.smoke
-def test_home_page_loaded(page): 
+class TestHomePage:
 
-    home = HomePage(page)
+    def test_home_page_elements_visibility(self, page):
 
-    home.navigate()
+        home_page = HomePage(page)
 
-    assert page.url == "https://parabank.parasoft.com/parabank/index.htm"
+        expect(
+            home_page.parabank_logo
+        ).to_be_visible()
 
-    assert page.locator(".caption").text_content() == "Experience the difference"
+        expect(
+            home_page.register_link
+        ).to_be_visible()
+
+        expect(
+            home_page.forgot_login_info_link
+        ).to_be_visible()
+
+        expect(
+            home_page.customer_login_heading
+        ).to_be_visible()
+
+    def test_register_link_navigation(self, page):
+
+        home_page = HomePage(page)
+
+        home_page.click_register_link()
+
+        expect(page).to_have_url(re.compile(r".*register\.htm.*"))
+
+    def test_forgot_login_info_navigation(self, page):
+
+        home_page = HomePage(page)
+
+        home_page.click_forgot_login_info_link()
+
+        expect(page).to_have_url(re.compile(r".*lookup\.htm.*"))
