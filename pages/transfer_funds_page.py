@@ -1,7 +1,7 @@
 from playwright.sync_api import Page
 
 
-class TransferPage:
+class TransferFundsPage:
 
     def __init__(self, page: Page):
 
@@ -14,7 +14,7 @@ class TransferPage:
             name="Transfer Funds"
         )
 
-        self.transfer_amount_input = page.locator(
+        self.amount_input = page.locator(
             "#amount"
         )
 
@@ -35,8 +35,8 @@ class TransferPage:
             name="Transfer Complete!"
         )
 
-        self.transfer_complete_message = page.get_by_text(
-            "Your transfer is complete"
+        self.transfer_complete_message = page.locator(
+            "#showResult"
         )
 
         self.confirmation_amount = page.locator(
@@ -53,63 +53,59 @@ class TransferPage:
 
     # Actions
 
-def get_available_account_numbers(self):
-
-    self.page.wait_for_timeout(3000)
-
-    options = self.from_account_dropdown.locator(
-        "option"
-    )
-
-    count = options.count()
-
-    print(f"\nDropdown Option Count: {count}")
-
-    accounts = []
-
-    for index in range(count):
-
-        option_value = options.nth(index).get_attribute(
-            "value"
-        )
-
-        print(f"Option {index}: {option_value}")
-
-        if option_value:
-
-            cleaned_value = option_value.strip()
-
-            if cleaned_value:
-
-                accounts.append(cleaned_value)
-
-    print(f"\nAvailable Accounts: {accounts}")
-
-    return accounts
-
     def fill_transfer_amount(self, amount):
 
-        self.transfer_amount_input.fill(
+        self.amount_input.fill(
             str(amount)
         )
 
-    def select_from_account(self, accounts):
+    def select_from_account(self, account_id):
 
         self.from_account_dropdown.select_option(
-            value=accounts[0]
+            value=account_id
         )
 
-    def select_to_account(self, accounts):
+    def select_to_account(self, account_id):
 
         self.to_account_dropdown.select_option(
-            value=accounts[1]   
+            value=account_id
         )
 
     def click_transfer_button(self):
 
         self.transfer_button.click()
 
-    # Reusable Helper
+    # Reusable Helpers
+
+    def get_available_account_numbers(self):
+
+        self.page.wait_for_timeout(3000)
+
+        options = self.from_account_dropdown.locator(
+            "option"
+        )
+
+        count = options.count()
+
+        accounts = []
+
+        for index in range(count):
+
+            option_value = options.nth(index).get_attribute(
+                "value"
+            )
+
+            if option_value:
+
+                cleaned_value = option_value.strip()
+
+                if cleaned_value:
+
+                    accounts.append(cleaned_value)
+
+        print(f"\nAvailable Accounts: {accounts}")
+
+        return accounts
 
     def transfer_funds(self, amount):
 

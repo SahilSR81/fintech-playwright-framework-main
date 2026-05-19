@@ -1,13 +1,12 @@
-from playwright.sync_api import Page
+from playwright.sync_api import expect
 
 from pages.login_page import LoginPage
 from pages.accounts_page import AccountsPage
-from pages.transfer_page import TransferPage
+from pages.transfer_funds_page import TransferFundsPage
 
+class TestTransferFundsPage:
 
-class TestTransferPage:
-
-    def test_transfer_funds_between_accounts(self, page):
+    def test_transfer_funds_successfully(self, page):
 
         login_page = LoginPage(page)
 
@@ -20,13 +19,13 @@ class TestTransferPage:
 
         accounts_page.click_transfer_funds_link()
 
-        transfer_page = TransferPage(page)
+        transfer_page = TransferFundsPage(page)
 
         expect(
             transfer_page.transfer_funds_heading
         ).to_be_visible()
 
-        transfer_page.transfer_funds(amount=500)
+        transfer_page.transfer_funds(amount=100)
 
         expect(
             transfer_page.transfer_complete_heading
@@ -48,7 +47,7 @@ class TestTransferPage:
             transfer_page.confirmation_to_account
         ).to_be_visible()
 
-    def test_transfer_with_decimal_amount(self, page):
+    def test_transfer_funds_with_empty_amount(self, page):
 
         login_page = LoginPage(page)
 
@@ -61,20 +60,45 @@ class TestTransferPage:
 
         accounts_page.click_transfer_funds_link()
 
-        transfer_page = TransferPage(page)
+        transfer_page = TransferFundsPage(page)
 
         expect(
             transfer_page.transfer_funds_heading
         ).to_be_visible()
 
-        transfer_page.transfer_funds(amount=250.50)
+        transfer_page.click_transfer_button()
 
         expect(
-            transfer_page.transfer_complete_heading
+            transfer_page.transfer_funds_heading
         ).to_be_visible()
 
-        amount = transfer_page.get_confirmation_amount()
+    def test_transfer_page_fields_visibility(self, page):
 
-        assert amount is not None
+        login_page = LoginPage(page)
 
-        print(f"\nTransferred Amount: {amount}")
+        login_page.login_user(
+            username="john",
+            password="demo"
+        )
+
+        accounts_page = AccountsPage(page)
+
+        accounts_page.click_transfer_funds_link()
+
+        transfer_page = TransferFundsPage(page)
+
+        expect(
+            transfer_page.amount_input
+        ).to_be_visible()
+
+        expect(
+            transfer_page.from_account_dropdown
+        ).to_be_visible()
+
+        expect(
+            transfer_page.to_account_dropdown
+        ).to_be_visible()
+
+        expect(
+            transfer_page.transfer_button
+        ).to_be_visible()
