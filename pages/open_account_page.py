@@ -76,7 +76,7 @@ class OpenAccountPage:
         expect(
             self.success_message
         ).to_be_visible()
-
+        
         expect(
             self.new_account_id
         ).to_be_visible()
