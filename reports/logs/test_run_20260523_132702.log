@@ -1,0 +1,28 @@
+2026-05-23 13:27:02,991 | INFO | framework_logger | Starting browser session
+2026-05-23 13:27:03,533 | INFO | framework_logger | Selected browser: chromium
+2026-05-23 13:27:04,158 | INFO | framework_logger | Navigating to: https://parabank.parasoft.com/parabank/index.htm
+2026-05-23 13:27:06,606 | INFO | framework_logger | Closing browser session
+2026-05-23 13:27:07,025 | INFO | framework_logger | Starting browser session
+2026-05-23 13:27:07,460 | INFO | framework_logger | Selected browser: chromium
+2026-05-23 13:27:07,947 | INFO | framework_logger | Navigating to: https://parabank.parasoft.com/parabank/index.htm
+2026-05-23 13:27:13,500 | INFO | framework_logger | Closing browser session
+2026-05-23 13:27:14,046 | INFO | framework_logger | Starting browser session
+2026-05-23 13:27:14,494 | INFO | framework_logger | Selected browser: chromium
+2026-05-23 13:27:15,019 | INFO | framework_logger | Navigating to: https://parabank.parasoft.com/parabank/index.htm
+2026-05-23 13:27:23,792 | ERROR | framework_logger | Test Failed: test_home_page_logo_navigation
+2026-05-23 13:27:23,974 | INFO | framework_logger | Screenshot saved at: reports/screenshots\test_home_page_logo_navigation_20260523_132723.png
+2026-05-23 13:27:24,013 | INFO | framework_logger | Closing browser session
+2026-05-23 13:27:24,435 | INFO | framework_logger | Starting browser session
+2026-05-23 13:27:24,889 | INFO | framework_logger | Selected browser: chromium
+2026-05-23 13:27:25,458 | INFO | framework_logger | Navigating to: https://parabank.parasoft.com/parabank/index.htm
+2026-05-23 13:27:33,261 | ERROR | framework_logger | Test Failed: test_header_home_link
+2026-05-23 13:27:33,385 | INFO | framework_logger | Screenshot saved at: reports/screenshots\test_header_home_link_20260523_132733.png
+2026-05-23 13:27:33,388 | INFO | framework_logger | Closing browser session
+2026-05-23 13:27:33,848 | INFO | framework_logger | Starting browser session
+2026-05-23 13:27:34,293 | INFO | framework_logger | Selected browser: chromium
+2026-05-23 13:27:34,884 | INFO | framework_logger | Navigating to: https://parabank.parasoft.com/parabank/index.htm
+2026-05-23 13:27:36,832 | INFO | framework_logger | Closing browser session
+2026-05-23 13:27:37,213 | INFO | framework_logger | Starting browser session
+2026-05-23 13:27:37,647 | INFO | framework_logger | Selected browser: chromium
+2026-05-23 13:27:38,138 | INFO | framework_logger | Navigating to: https://parabank.parasoft.com/parabank/index.htm
+2026-05-23 13:27:39,987 | INFO | framework_logger | Closing browser session

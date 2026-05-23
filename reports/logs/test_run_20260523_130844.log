@@ -1,0 +1,16 @@
+2026-05-23 13:08:45,090 | INFO | framework_logger | Starting browser session
+2026-05-23 13:08:52,823 | INFO | framework_logger | Selected browser: chromium
+2026-05-23 13:08:53,584 | INFO | framework_logger | Navigating to: https://parabank.parasoft.com/parabank/index.htm
+2026-05-23 13:08:57,363 | INFO | framework_logger | Closing browser session
+2026-05-23 13:08:57,984 | INFO | framework_logger | Starting browser session
+2026-05-23 13:08:58,498 | INFO | framework_logger | Selected browser: chromium
+2026-05-23 13:08:59,120 | INFO | framework_logger | Navigating to: https://parabank.parasoft.com/parabank/index.htm
+2026-05-23 13:09:03,393 | INFO | framework_logger | Closing browser session
+2026-05-23 13:09:04,257 | INFO | framework_logger | Starting browser session
+2026-05-23 13:09:04,661 | INFO | framework_logger | Selected browser: chromium
+2026-05-23 13:09:05,400 | INFO | framework_logger | Navigating to: https://parabank.parasoft.com/parabank/index.htm
+2026-05-23 13:09:09,542 | INFO | framework_logger | Closing browser session
+2026-05-23 13:09:10,072 | INFO | framework_logger | Starting browser session
+2026-05-23 13:09:10,539 | INFO | framework_logger | Selected browser: chromium
+2026-05-23 13:09:11,152 | INFO | framework_logger | Navigating to: https://parabank.parasoft.com/parabank/index.htm
+2026-05-23 13:09:15,237 | INFO | framework_logger | Closing browser session

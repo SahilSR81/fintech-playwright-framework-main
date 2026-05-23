@@ -1,4 +1,6 @@
 playwright==1.59.0
 pytest==9.0.0
 pytest-playwright
-allure-pytest
+allure-pytest==2.16.0
+pytest-html==4.2.0
+pytest-metadata==3.1.1
