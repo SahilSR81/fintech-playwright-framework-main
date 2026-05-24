@@ -1,0 +1,72 @@
+name: Fintech Playwright CI
+
+on:
+  push:
+    branches:
+      - main
+      - master
+      - develop
+
+  pull_request:
+    branches:
+      - main
+      - master
+
+  workflow_dispatch:
+
+jobs:
+  playwright-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    strategy:
+      fail-fast: false
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 📦 Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: 🎭 Install Playwright Browsers
+        run: |
+          playwright install --with-deps
+
+      - name: 📂 Create Report Directories
+        run: |
+          mkdir -p reports/logs
+          mkdir -p reports/screenshots
+          mkdir -p allure-results
+
+      - name: 🚀 Run Playwright Tests
+        run: |
+          pytest -v --alluredir=allure-results
+
+      - name: 📊 Upload Allure Results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results
+          path: allure-results/
+
+      - name: 📸 Upload Screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots
+          path: reports/screenshots/
+
+      - name: 📝 Upload Logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: logs
+          path: reports/logs/
