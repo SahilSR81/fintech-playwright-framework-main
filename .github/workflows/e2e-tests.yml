@@ -19,9 +19,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
-    strategy:
-      fail-fast: false
-
     steps:
       - name: 📥 Checkout Repository
         uses: actions/checkout@v4
@@ -30,6 +27,14 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+
+      - name: 📦 Cache Pip Dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
 
       - name: 📦 Install Dependencies
         run: |
@@ -48,7 +53,7 @@ jobs:
 
       - name: 🚀 Run Playwright Tests
         run: |
-          pytest -v --alluredir=allure-results
+          pytest
 
       - name: 📊 Upload Allure Results
         if: always()
@@ -70,3 +75,10 @@ jobs:
         with:
           name: logs
           path: reports/logs/
+
+      - name: 📄 Upload HTML Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: html-report
+          path: reports/report.html
