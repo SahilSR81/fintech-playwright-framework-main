@@ -1,0 +1,12 @@
+# Ignore the report HTML file
+reports/report.html
+
+# Ignore all contents inside these folders
+reports/allure-results/*
+reports/logs/*
+reports/screenshots/*
+
+# BUT do not ignore the .gitkeep files
+!reports/allure-results/.gitkeep
+!reports/logs/.gitkeep
+!reports/screenshots/.gitkeep
