@@ -1,4 +1,0 @@
-2026-05-23 13:31:56,177 | INFO | framework_logger | Starting browser session
-2026-05-23 13:31:56,633 | INFO | framework_logger | Selected browser: chromium
-2026-05-23 13:31:57,156 | INFO | framework_logger | Navigating to: https://parabank.parasoft.com/parabank/index.htm
-2026-05-23 13:31:59,611 | INFO | framework_logger | Closing browser session

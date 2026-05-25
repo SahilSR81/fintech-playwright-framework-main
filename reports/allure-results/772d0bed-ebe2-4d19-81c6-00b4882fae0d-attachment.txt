@@ -1,4 +1,0 @@
-[32mINFO    [0m framework_logger:conftest.py:17 Starting browser session
-[32mINFO    [0m framework_logger:conftest.py:23 Selected browser: chromium
-[32mINFO    [0m framework_logger:conftest.py:47 Navigating to: https://parabank.parasoft.com/parabank/index.htm
-[32mINFO    [0m framework_logger:conftest.py:67 Closing browser session

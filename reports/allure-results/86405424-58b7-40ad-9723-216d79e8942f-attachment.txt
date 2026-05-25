@@ -1,6 +1,0 @@
-2026-05-23 13:32:06,889 | INFO | framework_logger | Starting browser session
-2026-05-23 13:32:07,376 | INFO | framework_logger | Selected browser: chromium
-2026-05-23 13:32:07,832 | INFO | framework_logger | Navigating to: https://parabank.parasoft.com/parabank/index.htm
-2026-05-23 13:32:10,316 | ERROR | framework_logger | Test Failed: test_home_page_logo_navigation
-2026-05-23 13:32:10,503 | INFO | framework_logger | Screenshot saved at: reports/screenshots\test_home_page_logo_navigation_20260523_133210.png
-2026-05-23 13:32:10,507 | INFO | framework_logger | Closing browser session
