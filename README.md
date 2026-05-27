@@ -130,6 +130,7 @@ fintech-playwright-framework-main/
 │   ├── screenshot_helper.py
 │   ├── test_data_generator.py
 │   ├── waits.py
+|   ├── session_manager.py
 │   └── __init__.py
 │
 ├── conftest.py
