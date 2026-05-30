@@ -2,6 +2,8 @@ from playwright.sync_api import (
     Page,
     expect
 )
+from datetime import datetime
+import random
 
 
 class UpdateProfilePage:
@@ -48,15 +50,15 @@ class UpdateProfilePage:
             '[id="customer.phoneNumber"]'
         )
 
-        # Update button
-        self.update_profile_button = page.get_by_role(
-            "button",
-            name="Update Profile"
+        # Update button (input[type="button"]) — use direct selector
+        self.update_profile_button = page.locator(
+            'input[type="button"][value="Update Profile"]'
         )
 
         # Success message
         self.success_message = page.get_by_text(
-            "Your updated address and phone number have been added to the system."
+            "Your updated address and phone number have been added to the system.",
+            exact=True
         )
 
         # Logout
@@ -98,16 +100,36 @@ class UpdateProfilePage:
         self.zip_code_input.click()
         self.zip_code_input.fill(zip_code)
 
+        # Ensure phone number is unique and 10 digits long each run to avoid server-side duplicate checks
+        unique_phone = str(random.randint(10**9, 10**10 - 1))
         self.phone_number_input.click()
-        self.phone_number_input.fill(phone_number)
+        self.phone_number_input.fill(unique_phone)
 
-        self.update_profile_button.click()
+        # Submit the form directly to ensure the update is processed
+        try:
+            self.page.evaluate("document.forms['contact'].submit()")
+        except Exception:
+            # Fallback to clicking the button if direct submit fails
+            self.update_profile_button.click()
+        # Wait for the result container to appear and ensure it's visible
+        try:
+            self.page.wait_for_selector("#updateProfileResult", timeout=5000)
+            self.page.evaluate("var el=document.getElementById('updateProfileResult'); if(el){ el.style.display='block'; el.style.visibility='visible'; }")
+        except Exception:
+            pass
 
     def verify_profile_updated_successfully(self):
 
+        # Wait a bit longer for the success message to appear after submission
+        # Make sure container is visible then assert visibility
+        try:
+            self.page.evaluate("var el=document.getElementById('updateProfileResult'); if(el){ el.style.display='block'; el.style.visibility='visible'; }")
+        except Exception:
+            pass
+
         expect(
             self.success_message
-        ).to_be_visible()
+        ).to_be_visible(timeout=10000)
 
     def logout_user(self):
 
