@@ -201,13 +201,13 @@ python -m pytest -v --headed
 ### Run Tests with Allure Reports
 
 ```bash
-python -m pytest -v --alluredir=allure-results
+python -m pytest -v --alluredir=reports/allure-results
 ```
 
 ### Generate Allure Report
 
 ```bash
-allure serve allure-results
+allure serve reports/allure-results
 ```
 
 ---
