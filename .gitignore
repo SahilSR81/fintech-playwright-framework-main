@@ -1,44 +1,32 @@
-# Ignore the report HTML file
-reports/report.html
-
-# Ignore all contents inside these folders
-reports/allure-results/*
-reports/logs/*
-reports/screenshots/*
-
-# BUT do not ignore the .gitkeep files
-!reports/allure-results/.gitkeep
-!reports/logs/.gitkeep
-!reports/screenshots/.gitkeep
-
-# Common Python, test and editor ignores
+# Python
 __pycache__/
 *.py[cod]
 *$py.class
 
-# Virtual environments
+# Virtual Environment
 .venv/
 venv/
 env/
-ENV/
 
-# Pytest / tooling
+# Pytest
 .pytest_cache/
-.cache/
-.mypy_cache/
-.coverage
-coverage.xml
-htmlcov/
 
-# IDEs and editors
+# VS Code
 .vscode/
-.idea/
-*.iml
+
+# Allure
+allure-results/
+allure-report/
+
+# Reports
+reports/report.html
+reports/logs/*
+reports/screenshots/*
+
+# Keep folder structure
+!reports/logs/.gitkeep
+!reports/screenshots/.gitkeep
 
 # OS files
 .DS_Store
 Thumbs.db
-
-# Playwright / test outputs (kept under reports/ already)
-playwright-report/
-test-results/
