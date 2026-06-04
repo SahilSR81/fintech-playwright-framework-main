@@ -54,7 +54,7 @@ class AccountsPage:
         self.account_details_links.nth(account_index).click()
 
     def click_transfer_funds_link(self):
-
+        expect(self.transfer_funds_link).to_be_visible(timeout=15000)
         self.transfer_funds_link.click()
 
     # Data Helpers

@@ -1,4 +1,4 @@
-from playwright.sync_api import Page
+from playwright.sync_api import Page, expect
 
 
 class LoginPage:
@@ -37,15 +37,15 @@ class LoginPage:
     # Actions
 
     def fill_username(self, username):
-
+        expect(self.username_input).to_be_visible(timeout=15000)
         self.username_input.fill(username)
 
     def fill_password(self, password):
-
+        expect(self.password_input).to_be_visible(timeout=15000)
         self.password_input.fill(password)
 
     def click_login_button(self):
-
+        expect(self.login_button).to_be_visible(timeout=15000)
         self.login_button.click()
 
     def click_logout_link(self):
