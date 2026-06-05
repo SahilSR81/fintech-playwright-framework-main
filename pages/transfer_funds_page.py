@@ -1,4 +1,4 @@
-from playwright.sync_api import Page
+from playwright.sync_api import Page, expect
 
 
 class TransferFundsPage:
@@ -72,18 +72,16 @@ class TransferFundsPage:
         )
 
     def click_transfer_button(self):
-
+        expect(self.transfer_button).to_be_visible(timeout=15000)
         self.transfer_button.click()
 
     # Reusable Helpers
 
     def get_available_account_numbers(self):
 
-        self.page.wait_for_timeout(3000)
+        expect(self.from_account_dropdown).to_be_visible(timeout=15000)
 
-        options = self.from_account_dropdown.locator(
-            "option"
-        )
+        options = self.from_account_dropdown.locator("option")
 
         count = options.count()
 

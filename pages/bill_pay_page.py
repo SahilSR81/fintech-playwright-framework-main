@@ -74,7 +74,7 @@ class BillPayPage:
         )
 
     def navigate_to_bill_pay(self):
-
+        expect(self.bill_pay_link).to_be_visible(timeout=15000)
         self.bill_pay_link.click()
 
     def fill_payee_information(
