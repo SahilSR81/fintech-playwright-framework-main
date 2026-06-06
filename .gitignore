@@ -10,3 +10,35 @@ reports/screenshots/*
 !reports/allure-results/.gitkeep
 !reports/logs/.gitkeep
 !reports/screenshots/.gitkeep
+
+# Common Python, test and editor ignores
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Pytest / tooling
+.pytest_cache/
+.cache/
+.mypy_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# IDEs and editors
+.vscode/
+.idea/
+*.iml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Playwright / test outputs (kept under reports/ already)
+playwright-report/
+test-results/
