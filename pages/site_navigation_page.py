@@ -75,9 +75,8 @@ class SiteNavigationPage:
 
     def click_footer_about_us_link(self):
 
+        expect(self.footer_about_us_link).to_be_visible(timeout=15000)
         self.footer_about_us_link.click()
-            expect(self.footer_about_us_link).to_be_visible(timeout=15000)
-            self.footer_about_us_link.click()
 
     def verify_about_us_page(self):
 
@@ -89,9 +88,8 @@ class SiteNavigationPage:
 
     def click_footer_services_link(self):
 
+        expect(self.footer_services_link).to_be_visible(timeout=15000)
         self.footer_services_link.click()
-            expect(self.footer_services_link).to_be_visible(timeout=15000)
-            self.footer_services_link.click()
 
     def verify_services_page(self):
 
@@ -103,15 +101,13 @@ class SiteNavigationPage:
 
     def navigate_to_about_us_page(self):
 
+        expect(self.left_menu_about_us_link).to_be_visible(timeout=15000)
         self.left_menu_about_us_link.click()
-            expect(self.left_menu_about_us_link).to_be_visible(timeout=15000)
-            self.left_menu_about_us_link.click()
 
     def click_parabank_logo(self):
 
+        expect(self.parabank_logo).to_be_visible(timeout=15000)
         self.parabank_logo.click()
-            expect(self.parabank_logo).to_be_visible(timeout=15000)
-            self.parabank_logo.click()
 
     def verify_home_page_url(self):
 
@@ -123,15 +119,13 @@ class SiteNavigationPage:
 
     def click_home_icon_link(self):
 
+        expect(self.home_icon_link).to_be_visible(timeout=15000)
         self.home_icon_link.click()
-            expect(self.home_icon_link).to_be_visible(timeout=15000)
-            self.home_icon_link.click()
 
     def click_contact_icon_link(self):
 
+        expect(self.contact_icon_link).to_be_visible(timeout=15000)
         self.contact_icon_link.click()
-            expect(self.contact_icon_link).to_be_visible(timeout=15000)
-            self.contact_icon_link.click()
 
     def verify_customer_care_page(self):
 
@@ -143,6 +137,5 @@ class SiteNavigationPage:
 
     def click_about_icon_link(self):
 
+        expect(self.about_icon_link).to_be_visible(timeout=15000)
         self.about_icon_link.click()
-            expect(self.about_icon_link).to_be_visible(timeout=15000)
-            self.about_icon_link.click()
