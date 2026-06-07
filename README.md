@@ -8,6 +8,7 @@
 [![Playwright](https://img.shields.io/badge/Playwright-Automation-2EAD33?style=flat-square&logo=playwright)](https://playwright.dev/python/)
 [![Pytest](https://img.shields.io/badge/Pytest-Framework-0A9EDC?style=flat-square&logo=pytest)](https://pytest.org/)
 [![Allure](https://img.shields.io/badge/Allure-Reports-FF6B6B?style=flat-square)](https://docs.qameta.io/allure/)
+[![Fintech Playwright CI](https://github.com/SahilSR81/fintech-playwright-framework-main/actions/workflows/e2e-tests.yml/badge.svg)](https://github.com/SahilSR81/fintech-playwright-framework-main/actions/workflows/e2e-tests.yml)
 
 </div>
 
@@ -274,15 +275,13 @@ Current framework utilities include:
 
 # 🚧 Future Enhancements
 
-- [ ] Better exception handling
-- [ ] More robust retry mechanisms
-- [ ] Advanced logging improvements
+- [✅] Better exception handling
+- [✅] More robust retry mechanisms
+- [✅] Advanced logging improvements
+- [✅] Enhanced reporting
+- [✅] GitHub Actions CI/CD pipeline optimization
 - [ ] Parallel test execution
 - [ ] Data-driven testing
-- [ ] Environment-based execution
-- [ ] Enhanced reporting
-- [ ] API testing integration
-- [✅] GitHub Actions CI/CD pipeline optimization
 
 ---
 
