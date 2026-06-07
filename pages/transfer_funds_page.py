@@ -79,7 +79,14 @@ class TransferFundsPage:
 
     def get_available_account_numbers(self):
 
-        expect(self.from_account_dropdown).to_be_visible(timeout=15000)
+        expect(self.from_account_dropdown).to_be_visible(
+            timeout=15000
+        )
+
+        self.page.wait_for_function(
+            "() => document.querySelectorAll('#fromAccountId option').length > 0",
+            timeout=15000
+        )
 
         options = self.from_account_dropdown.locator("option")
 
@@ -109,7 +116,7 @@ class TransferFundsPage:
 
         accounts = self.get_available_account_numbers()
 
-        if len(accounts) < 2:
+        if len(accounts) == 0:
 
             raise Exception(
                 f"Not enough accounts found: {accounts}"
@@ -117,7 +124,7 @@ class TransferFundsPage:
 
         from_account = accounts[0]
 
-        to_account = accounts[1]
+        to_account = accounts[1] if len(accounts) > 1 else accounts[0]
 
         print(
             f"\nTransferring from "

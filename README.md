@@ -210,6 +210,29 @@ python -m pytest -v --alluredir=reports/allure-results
 allure serve reports/allure-results
 ```
 
+### View Allure Report Locally
+
+1. Run tests and generate Allure results:
+
+```bash
+python -m pytest -v --alluredir=reports/allure-results
+```
+
+2. Start the Allure server and open the report in your browser:
+
+```bash
+allure serve reports/allure-results
+```
+
+3. For a static report, generate to `reports/allure-report`:
+
+```bash
+allure generate reports/allure-results -o reports/allure-report --clean
+allure open reports/allure-report
+```
+
+> The framework now also writes Allure environment details and report categories automatically, so the generated report includes environment info, grouped failure categories, and attached screenshots for failed tests.
+
 ---
 
 # 📊 Allure Reports

@@ -56,11 +56,56 @@ class LoanRequestPage:
 
         self.request_loan_link.click()
 
+    def get_available_account_numbers(self):
+
+        expect(self.from_account_dropdown).to_be_visible(
+            timeout=15000
+        )
+
+        self.page.wait_for_function(
+            "() => document.querySelectorAll('#fromAccountId option').length > 0",
+            timeout=15000
+        )
+
+        options = self.from_account_dropdown.locator(
+            "option"
+        )
+
+        count = options.count()
+
+        accounts = []
+
+        for index in range(count):
+
+            option_value = options.nth(index).get_attribute(
+                "value"
+            )
+
+            if option_value:
+
+                cleaned_value = option_value.strip()
+
+                if cleaned_value:
+
+                    accounts.append(cleaned_value)
+
+        return accounts
+
+    def select_from_account(self, from_account: str):
+
+        expect(self.from_account_dropdown).to_be_visible(
+            timeout=15000
+        )
+
+        self.from_account_dropdown.select_option(
+            value=from_account
+        )
+
     def apply_for_loan(
         self,
         amount: str,
         down_payment: str,
-        from_account: str
+        from_account: str | None = None
     ):
 
         self.amount_input.click()
@@ -71,7 +116,15 @@ class LoanRequestPage:
             down_payment
         )
 
-        self.from_account_dropdown.select_option(
+        if from_account is None:
+            accounts = self.get_available_account_numbers()
+            if not accounts:
+                raise Exception(
+                    "No accounts available for loan request"
+                )
+            from_account = accounts[0]
+
+        self.select_from_account(
             from_account
         )
 

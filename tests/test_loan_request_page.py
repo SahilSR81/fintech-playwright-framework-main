@@ -23,11 +23,10 @@ def test_apply_for_loan_successfully(page):
     # Navigate to request loan page
     loan_request_page.navigate_to_request_loan_page()
 
-    # Apply for valid loan
+    # Apply for valid loan using the first available account
     loan_request_page.apply_for_loan(
         amount="2.73",
-        down_payment="1.03",
-        from_account="12678"
+        down_payment="1.03"
     )
 
     # Verify loan approval
@@ -52,11 +51,10 @@ def test_apply_for_loan_with_insufficient_funds(page):
     # Navigate to request loan page
     loan_request_page.navigate_to_request_loan_page()
 
-    # Apply for invalid loan
+    # Apply for invalid loan using the first available account
     loan_request_page.apply_for_loan(
         amount="123456789",
-        down_payment="0",
-        from_account="13122"
+        down_payment="0"
     )
 
     # Verify loan denial

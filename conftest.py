@@ -1,3 +1,7 @@
+import json
+import platform
+from pathlib import Path
+
 import pytest
 import allure
 
@@ -11,8 +15,71 @@ from utils.screenshot_helper import take_screenshot
 logger = setup_logger()
 
 
-@pytest.fixture(scope="function")
-def page():
+def _write_allure_environment():
+    results_dir = Path("reports") / "allure-results"
+    results_dir.mkdir(parents=True, exist_ok=True)
+
+    env_path = results_dir / "environment.properties"
+    env_properties = {
+        "Base URL": ConfigReader.get_base_url(),
+        "Browser": ConfigReader.get_browser(),
+        "Headless": ConfigReader.get_headless(),
+        "Timeout (ms)": ConfigReader.get_timeout(),
+        "Page Load Timeout (ms)": ConfigReader.get_page_load_timeout(),
+        "Platform": platform.platform(),
+        "Python Version": platform.python_version(),
+    }
+
+    with env_path.open("w", encoding="utf-8") as env_file:
+        for key, value in env_properties.items():
+            env_file.write(f"{key}={value}\n")
+
+    categories_path = results_dir / "categories.json"
+    categories = [
+        {
+            "name": "Assertion Failures",
+            "matchedStatuses": ["FAILED"],
+            "messageRegex": "AssertionError"
+        },
+        {
+            "name": "Timeout Issues",
+            "matchedStatuses": ["FAILED"],
+            "messageRegex": "TimeoutError"
+        },
+        {
+            "name": "Broken Tests",
+            "matchedStatuses": ["BROKEN"]
+        },
+        {
+            "name": "Skipped Tests",
+            "matchedStatuses": ["SKIPPED"]
+        }
+    ]
+
+    with categories_path.open("w", encoding="utf-8") as categories_file:
+        json.dump(categories, categories_file, indent=2)
+
+
+def pytest_sessionstart(session):
+    _write_allure_environment()
+
+
+@pytest.fixture(autouse=True)
+def allure_test_metadata(request):
+    feature_name = request.node.fspath.basename.replace("test_", "").replace("_", " ").replace(".py", "").title()
+    story_name = request.node.name.replace("_", " ").title()
+
+    allure.dynamic.feature(feature_name)
+    allure.dynamic.story(story_name)
+    allure.dynamic.severity("normal")
+
+    test_doc = request.node.function.__doc__
+    if test_doc:
+        allure.dynamic.description(test_doc)
+
+
+@pytest.hookimpl(hookwrapper=True)
+def pytest_runtest_makereport(item, call):
 
     logger.info("Starting browser session")
 
