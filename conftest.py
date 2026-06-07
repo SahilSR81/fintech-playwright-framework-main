@@ -58,6 +58,12 @@ def page():
             timeout=60000
         )
 
+        # Wait until network is mostly idle to ensure dynamic elements load
+        page.wait_for_load_state(
+            "networkidle",
+            timeout=ConfigReader.get_page_load_timeout()
+        )
+
         # Default element/action timeout
 
         page.set_default_timeout(
