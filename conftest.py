@@ -78,8 +78,8 @@ def allure_test_metadata(request):
         allure.dynamic.description(test_doc)
 
 
-@pytest.hookimpl(hookwrapper=True)
-def pytest_runtest_makereport(item, call):
+@pytest.fixture(scope="function")
+def page():
 
     logger.info("Starting browser session")
 
@@ -108,7 +108,7 @@ def pytest_runtest_makereport(item, call):
             )
 
         context = browser.new_context(
-        viewport={"width": 1920, "height": 1080}
+            viewport={"width": 1920, "height": 1080}
         )
 
         page = context.new_page()
@@ -118,7 +118,6 @@ def pytest_runtest_makereport(item, call):
         )
 
         # Better page loading strategy
-
         page.goto(
             ConfigReader.get_base_url(),
             wait_until="domcontentloaded",
@@ -132,7 +131,6 @@ def pytest_runtest_makereport(item, call):
         )
 
         # Default element/action timeout
-
         page.set_default_timeout(
             ConfigReader.get_timeout()
         )
